@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3f51b5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="Red">#F44336</color>
+    <color name="White">#FFFFFF</color>
+    <color name="Blue1">#2196F3</color>
+    <color name="Blue2">#1565C0</color>
+    <color name="Blue3">#0D47A1</color>
+    <color name="Black">#000000</color>
+    <color name="BlueGrey">#263238</color>
+    <color name="BlueGrey2">#455a64</color>
+    <color name="Raro">#2196</color>
+    <color name="Raro2">#212121</color>
+    <color name="Raro3">#424242</color>
+    <color name="Grey">#E0E0E0</color>
+</resources>

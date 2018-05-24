@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "525732149248",
+    "firebase_url": "https://productos-b27c1.firebaseio.com",
+    "project_id": "productos-b27c1",
+    "storage_bucket": "productos-b27c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:525732149248:android:a2c2db2e69cb3b27",
+        "android_client_info": {
+          "package_name": "com.example.bvarg.firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "525732149248-042180e1geovjou96hbgkn52o4b5n4ji.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0BwkkAh4myjyt3mHW_HLRJy5qQHQH4Ak"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

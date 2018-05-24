@@ -1,0 +1,31 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/BlueGrey2</item>
+        <item name="colorPrimaryDark">@color/BlueGrey</item>
+        <item name="colorAccent">@color/Raro</item>
+    </style>
+
+    <style name="AppTheme.Button" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:background">@color/Blue1</item>
+        <item name="android:textColor">@color/White</item>
+    </style>
+
+    <style name="AppTheme.Button2" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:background">@color/Blue2</item>
+        <item name="android:textColor">@color/White</item>
+    </style>
+
+    <style name="AppTheme.Button3" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:background">@color/Blue3</item>
+        <item name="android:textColor">@color/White</item>
+    </style>
+
+    <style name="AppTheme.EditText" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@color/Grey</item>
+        <item name="android:textColor">@color/Raro3</item>
+    </style>
+
+</resources>
