@@ -1,6 +1,8 @@
 package com.example.bvarg.firebase;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     //Botones
     Button guardar;
     Button cargarimagen;
-    ArrayList uris = new ArrayList();
+
 
     //Cuadros de Texto
     EditText nombre;
@@ -42,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
     //Mostrar Datos
     ListView listView;
     ArrayList listaproductos = new ArrayList();
+    ArrayList uris = new ArrayList();
+    ArrayList keys = new ArrayList();
+    ArrayList imagenes = new ArrayList();
 
     //Imagen
     StorageReference mStorage;
@@ -92,9 +97,8 @@ public class MainActivity extends AppCompatActivity {
                     mProgressDialog.setMessage("Cargando Contenido");
                     mProgressDialog.setCancelable(false);
                     mProgressDialog.show();
-
-                    StorageReference filepath = mStorage.child("fotos").child(uri.getLastPathSegment());
-
+                    final int numero = (int) (Math.random() * 100) + 1;
+                    StorageReference filepath = mStorage.child("fotos").child(uri.getLastPathSegment()+numero);
                     filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -108,6 +112,8 @@ public class MainActivity extends AppCompatActivity {
                             producto.descripcion = descripcion.getText().toString();
                             producto.imagen = String.valueOf(img);
                             productos.push().setValue(producto);
+                            String codigo = uri.getLastPathSegment();
+                            imagenes.add(codigo+numero);
                             guardar.setEnabled(false);
                             nombre.setText("");
                             precio.setText("");
@@ -126,9 +132,11 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 listaproductos.clear();
                 uris.clear();
+                keys.clear();
                 for (DataSnapshot data: dataSnapshot.getChildren()) {
                     String total = "Nombre: " + data.child("nombre").getValue().toString()+"   Descripcion: "+data.child("descripcion").getValue().toString()+"   Precio: "+data.child("precio").getValue().toString();
                     uris.add(data.child("imagen").getValue().toString());
+                    keys.add(data.getKey());
                     listaproductos.add(total);
                     adapter.notifyDataSetChanged();
                 }
@@ -148,6 +156,34 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                Toast.makeText(MainActivity.this, "Si pasa", Toast.LENGTH_SHORT).show();
+                new AlertDialog.Builder( MainActivity.this )
+                        .setTitle( "Eliminar" )
+                        .setMessage( "¿Deseas Eliminar este elemento?" )
+                        .setPositiveButton( "Si", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                productos.child(keys.get(position).toString()).setValue(null);
+                                keys.remove(position);
+                                uris.remove(position);
+                                listaproductos.remove(position);
+                                mStorage.child("fotos").child(imagenes.get(position).toString()).delete();
+                                imagenes.remove(position);
+                                adapter.notifyDataSetChanged();
+                            }
+                        })
+                        .setNegativeButton( "No", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .show();
+                return true;
+            }
+        });
     }
 
     @Override
@@ -159,4 +195,5 @@ public class MainActivity extends AppCompatActivity {
             guardar.setEnabled(true);
         }
     }
+
 }
